@@ -1,5 +1,6 @@
 package com.example.foodrecipe;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -32,27 +34,29 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
 
-//    private Activity getActivity() {
-//        Context context = this;
-//        while (context instanceof ContextWrapper) {
-//            if (context instanceof Activity) {
-//                return (Activity) context;
-//            }
-//            context = ((ContextWrapper) context).getBaseContext();
-//        }
-//
-//        return null;
-//    }
+    private Activity getActivity() {
+        Context context = this;
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity) context;
+            }
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+
+        return null;
+    }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        getActionBar().setElevation(1);
 
-        progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("Loading....");
-        progressDialog.show();
+        initViews();
+
+
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -60,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<RecipeList>>() {
             @Override
             public void onResponse(Call<List<RecipeList>> call, Response<List<RecipeList>> response) {
-//                recipeLists = response.body();
-//                adapter.setRecipes(recipeLists);
+                recipeLists = response.body();
+                adapter.setRecipes(recipeLists);
                 progressDialog.dismiss();
-                generateDataList((ArrayList<RecipeList>) response.body());
+//                generateDataList((ArrayList<RecipeList>) response.body());
             }
 
             @Override
@@ -75,15 +79,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Method to generate List of data using RecyclerView with custom adapter*/
-    private void generateDataList(ArrayList<RecipeList> recipeLists) {
-        recyclerView = findViewById(R.id.customRecyclerView);
-//        recipeLists = new ArrayList<>();
-        adapter = new CustomAdapter(this,recipeLists);
+//    private void generateDataList(ArrayList<RecipeList> recipeLists) {
+//        recyclerView = findViewById(R.id.customRecyclerView);
+////        recipeLists = new ArrayList<>();
+//        adapter = new CustomAdapter(this,recipeLists);
+//
+        private void initViews(){
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage("Loading....");
+            progressDialog.show();
 
-//        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            recyclerView = findViewById(R.id.customRecyclerView);
+            recipeLists = new ArrayList<>();
+            adapter = new CustomAdapter(this,recipeLists);
+
+
+
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
+        }
         }
 //    }
 

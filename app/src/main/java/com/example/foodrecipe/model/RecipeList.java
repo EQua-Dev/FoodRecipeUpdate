@@ -15,7 +15,7 @@ public class  RecipeList {
     @SerializedName("country")
     private String country;
     @SerializedName("deliverable_ingredients")
-    private List<String> deliberableIngredients;
+    private List<String> deliverableIngredients;
     @SerializedName("description")
     private String description;
     @SerializedName("difficulty")
@@ -34,8 +34,8 @@ public class  RecipeList {
     private String id;
     @SerializedName("image")
     private String image;
-////    @SerializedName("incompatibilities")
-////    val incompatibilities: Any,
+    @SerializedName("incompatibilities")
+    private Object incompatibilities;
     @SerializedName("ingredients")
     private List<String> ingredients;
     @SerializedName("keywords")
@@ -54,42 +54,44 @@ public class  RecipeList {
     private String thumb;
     @SerializedName("time")
     private String time;
-//    @SerializedName("undeliverable_ingredients")
-//    val undeliverableIngredients: List<Any>,
+    @SerializedName("undeliverable_ingredients")
+    private List<Object> undeliverableIngredients;
     @SerializedName("user")
     private User user;
     @SerializedName("weeks")
-    private List<String> weeks;
+    private List<String> weeks = null;
 
     public RecipeList(String calories, String carbos, String card, String country, List<String> deliberableIngredients, String description,
                       Integer difficulty, String fats, Integer favorites, String fibers, String headline, boolean ishighlighted, String id,
-                      String image, List<String> ingredients, List<String> keywords, String name, List<String> products, String proteins,
+                      String image, Object incompatibilities, List<String> ingredients, List<String> keywords, String name, List<String> products, String proteins,
                       Double rating, Integer ratings, String thumb, String time, User user, List<String> weeks) {
-        this.calories = calories;
-        this.carbos = carbos;
-        this.card = card;
-        this.country = country;
-        this.deliberableIngredients = deliberableIngredients;
-        this.description = description;
-        this.difficulty = difficulty;
-        this.fats = fats;
-        this.favorites = favorites;
-        this.fibers = fibers;
-        this.headline = headline;
-        this.ishighlighted = ishighlighted;
-        this.id = id;
-        this.image = image;
-        this.ingredients = ingredients;
-        this.keywords = keywords;
-        this.name = name;
-        this.products = products;
-        this.proteins = proteins;
-        this.rating = rating;
-        this.ratings = ratings;
-        this.thumb = thumb;
-        this.time = time;
-        this.user = user;
-        this.weeks = weeks;
+//        this.calories = calories;
+//        this.carbos = carbos;
+//        this.card = card;
+//        this.country = country;
+//        this.deliverableIngredients = deliberableIngredients;
+//        this.description = description;
+//        this.difficulty = difficulty;
+//        this.fats = fats;
+//        this.favorites = favorites;
+//        this.fibers = fibers;
+//        this.headline = headline;
+//        this.ishighlighted = ishighlighted;
+//        this.id = id;
+//        this.image = image;
+//        this.incompatibilities = incompatibilities;
+//        this.ingredients = ingredients;
+//        this.keywords = keywords;
+//        this.name = name;
+//        this.products = products;
+//        this.proteins = proteins;
+//        this.rating = rating;
+//        this.ratings = ratings;
+//        this.thumb = thumb;
+//        this.time = time;
+//        this.user = user;
+//        this.weeks = weeks;
+//        this.undeliverableIngredients = null;
     }
 
     public String getCalories() {
@@ -124,12 +126,12 @@ public class  RecipeList {
         this.country = country;
     }
 
-    public List<String> getDeliberableIngredients() {
-        return deliberableIngredients;
+    public List<String> getDeliverableIngredients() {
+        return deliverableIngredients;
     }
 
-    public void setDeliberableIngredients(List<String> deliberableIngredients) {
-        this.deliberableIngredients = deliberableIngredients;
+    public void setDeliverableIngredients(List<String> deliverableIngredients) {
+        this.deliverableIngredients = deliverableIngredients;
     }
 
     public String getDescription() {
@@ -290,5 +292,21 @@ public class  RecipeList {
 
     public void setWeeks(List<String> weeks) {
         this.weeks = weeks;
+    }
+
+    public List<Object> getUndeliverableIngredients() {
+        return undeliverableIngredients;
+    }
+
+    public void setUndeliverableIngredients(List<Object> undeliverableIngredients) {
+        this.undeliverableIngredients = undeliverableIngredients;
+    }
+
+    public Object getIncompatibilities() {
+        return incompatibilities;
+    }
+
+    public void setIncompatibilities(Object incompatibilities) {
+        this.incompatibilities = incompatibilities;
     }
 }

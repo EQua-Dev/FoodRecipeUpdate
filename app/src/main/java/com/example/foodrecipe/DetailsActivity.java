@@ -77,7 +77,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
     private void saveFavourite() {
-        SharedPreferences prefs = getSharedPreferences("Favourite Prefs", 0);
+        SharedPreferences prefs = getSharedPreferences("Favourites Prefs", 0);
         SharedPreferences.Editor editP = prefs.edit();
         editP.putStringSet("Favourites", mFavourite).apply();
         if (ConfirmFavourite(Position)){

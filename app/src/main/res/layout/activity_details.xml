@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailsActivity"
-    android:background="#dddddd">
+    android:background="@drawable/second_layer">
     <!--tools:showIn="@layout/activity_details">-->
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
@@ -14,34 +14,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true">
+        android:layout_marginStart="-3dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginTop="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/food_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Description"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_margin="5dp">
 
-            <ImageView
-                android:id="@+id/favouriteBtn"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="300dp"
-                android:layout_marginRight="300dp"
-                android:onClick="fav"
-                android:src="@drawable/ic_favorite_border" />
+                <TextView
+                    android:id="@+id/food_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Description"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/favouriteBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="59dp"
+                    android:layout_marginEnd="51dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/food_name"
+                    android:onClick="fav"
+                    android:src="@drawable/ic_favorite_border" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
